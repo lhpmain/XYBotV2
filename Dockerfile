@@ -27,12 +27,9 @@ RUN pip install --no-cache-dir gunicorn eventlet
 # 复制应用代码
 COPY . .
 
-# 创建启动脚本
-RUN echo '#!/bin/bash\n\
-redis-server /etc/redis/redis.conf --daemonize yes\n\
-python app.py' > ./start.sh \
-    && chmod +x ./start.sh
+# 启动脚本
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-# 设置启动命令
-CMD ["./start.sh"]
+CMD ["./entrypoint.sh"]
 
