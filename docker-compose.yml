@@ -1,7 +1,7 @@
 services:
   xybotv2:
-    image: henryxiaoyang/xybotv2:latest
-    container_name: XYBotV2
+    image: lhpmain/xybotv2:latest
+    container_name: XYBotV21
     restart: on-failure:3
     ports:
       - "9999:9999"  # 映射gunicorn端口

@@ -41,7 +41,7 @@ jobs:
       - name: 登录到 Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: 获取短 SHA
@@ -56,7 +56,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ vars.DOCKERHUB_USERNAME }}/xybotv2:latest
-            ${{ vars.DOCKERHUB_USERNAME }}/xybotv2:${{ env.GIT_SHA }}
-          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/xybotv2:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/xybotv2:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/xybotv2:${{ env.GIT_SHA }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/xybotv2:latest
           cache-to: type=inline,mode=max

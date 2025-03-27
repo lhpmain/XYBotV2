@@ -232,3 +232,19 @@ def on_other_message(priority=50):
         return func
 
     return decorator if not callable(priority) else decorator(priority)
+
+
+def on_xml_message(priority=50):
+    """xml消息装饰器"""
+
+    def decorator(func):
+        if callable(priority):
+            f = priority
+            setattr(f, '_event_type', 'xml_message')
+            setattr(f, '_priority', 50)
+            return f
+        setattr(func, '_event_type', 'xml_message')
+        setattr(func, '_priority', min(max(priority, 0), 99))
+        return func
+
+    return decorator if not callable(priority) else decorator(priority)

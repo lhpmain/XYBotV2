@@ -1,0 +1,6 @@
+[ManagePlugin]
+command = ["加载插件", "加载所有插件", "卸载插件", "卸载所有插件", "重载插件", "重载所有插件", "插件列表", "插件信息"]
+
+[Bncr]
+enable = true
+base_url = "http://jd.lhpcn.dpdns.org:9090/api/bot/XYBotV2"

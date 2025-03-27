@@ -30,9 +30,9 @@ COPY . .
 # 创建启动脚本
 RUN echo '#!/bin/bash\n\
 redis-server /etc/redis/redis.conf --daemonize yes\n\
-python app.py' > /app/start.sh \
-    && chmod +x /app/start.sh
+python app.py' > ./start.sh \
+    && chmod +x ./start.sh
 
 # 设置启动命令
-CMD ["/app/start.sh"]
+CMD ["./start.sh"]
 
