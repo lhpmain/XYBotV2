@@ -29,8 +29,11 @@ COPY . .
 
 # 启动脚本
 # COPY entrypoint.sh .
-RUN chmod +x ./entrypoint.sh
+# RUN chmod +x ./entrypoint.sh
 
-CMD ["./entrypoint.sh"]
+# CMD ["./entrypoint.sh"]
+
+CMD ["python app.py"]
+
 
 
