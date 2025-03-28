@@ -248,3 +248,35 @@ def on_xml_message(priority=50):
         return func
 
     return decorator if not callable(priority) else decorator(priority)
+
+
+def on_friend_request(priority=50):
+    """被@消息装饰器"""
+
+    def decorator(func):
+        if callable(priority):
+            f = priority
+            setattr(f, '_event_type', 'friend_request')
+            setattr(f, '_priority', 50)
+            return f
+        setattr(func, '_event_type', 'friend_request')
+        setattr(func, '_priority', min(max(priority, 0), 99))
+        return func
+
+    return decorator if not callable(priority) else decorator(priority)
+    
+    
+def on_sys_message(priority=50):
+    """被@消息装饰器"""
+
+    def decorator(func):
+        if callable(priority):
+            f = priority
+            setattr(f, '_event_type', 'sys_message')
+            setattr(f, '_priority', 50)
+            return f
+        setattr(func, '_event_type', 'sys_message')
+        setattr(func, '_priority', min(max(priority, 0), 99))
+        return func
+
+    return decorator if not callable(priority) else decorator(priority)

@@ -3,10 +3,10 @@ from loguru import logger
 from WechatAPI import WechatAPIClient
 from utils.decorators import *
 from utils.plugin_base import PluginBase
+from database.XYBotDB import XYBotDB
 import aiohttp
 import tomllib
 
-# from database.XYBotDB import XYBotDB
 
 class Bncr(PluginBase):
     description = "Bncr"
@@ -15,8 +15,10 @@ class Bncr(PluginBase):
 
     def __init__(self):
         super().__init__()
+
         with open("plugins/Bncr/config.toml", "rb") as f:
             plugin_config = tomllib.load(f)
+
         with open("main_config.toml", "rb") as f:
             main_config = tomllib.load(f)
 
@@ -26,7 +28,9 @@ class Bncr(PluginBase):
         self.enable = config["enable"]
         self.version = main_config["version"]
         self.base_url = config["base_url"]
-
+        self.status_message = config["status-message"]
+        
+        self.db = XYBotDB()
 
     async def request(self, message):
         try:
@@ -46,15 +50,15 @@ class Bncr(PluginBase):
         logger.info("收到了被@消息")
         return await self.request(message)
         
-    # @on_xml_message
-    # async def handle_xml(self, bot: WechatAPIClient, message: dict):
-    #   logger.info("收到了xml消息")
-    #   return await self.request(message)
+    @on_xml_message
+    async def handle_xml(self, bot: WechatAPIClient, message: dict):
+       logger.info("收到了xml消息")
+       return await self.request(message)
          
-    # @on_friend_request
-    # async def handle_friend(self, bot: WechatAPIClient, message: dict):
-    #    logger.info("收到了好友申请")
-    #    return await self.request(message)
+    @on_friend_request
+    async def handle_friend(self, bot: WechatAPIClient, message: dict):
+       logger.info("收到了好友申请")
+       return await self.request(message)
 
     @on_voice_message
     async def handle_voice(self, bot: WechatAPIClient, message: dict):
@@ -81,10 +85,10 @@ class Bncr(PluginBase):
         logger.info("收到了引用消息")
         return await self.request(message)
 
-    # @on_sys_message
-    # async def handle_sys(self, bot: WechatAPIClient, message: dict):
-    #   logger.info("收到了系统消息")
-    #   return await self.request(message)
+    @on_sys_message
+    async def handle_sys(self, bot: WechatAPIClient, message: dict):
+        logger.info("收到了系统消息")
+        return await self.request(message)
 
     @on_pat_message
     async def handle_pat(self, bot: WechatAPIClient, message: dict):
