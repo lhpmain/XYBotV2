@@ -28,9 +28,6 @@ class Bncr(PluginBase):
         self.enable = config["enable"]
         self.version = main_config["version"]
         self.base_url = config["base_url"]
-        self.status_message = config["status-message"]
-        
-        self.db = XYBotDB()
 
     async def request(self, message):
         try:
