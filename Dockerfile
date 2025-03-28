@@ -28,8 +28,9 @@ RUN pip install --no-cache-dir gunicorn eventlet
 COPY . .
 
 # 启动脚本
-COPY entrypoint.sh .
+# COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
 CMD ["./entrypoint.sh"]
+
 
