@@ -33,7 +33,7 @@ COPY . .
 
 # CMD ["./entrypoint.sh"]
 
-CMD ["python app.py"]
+CMD ["python", "app.py"]
 
 
 
