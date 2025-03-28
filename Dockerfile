@@ -1,6 +1,10 @@
 FROM python:3.11-slim
 
-COPY . /app    # 将当前目录下的文件复制到容器的 /app 目录
+# 创建工作目录
+RUN mkdir -p /app
+
+# 将当前目录下的文件复制到容器的 /app 目录
+COPY . /app
 
 # 设置工作目录
 WORKDIR /app
