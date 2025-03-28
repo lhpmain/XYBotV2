@@ -9,6 +9,9 @@ COPY . /app
 # 设置工作目录
 WORKDIR /app
 
+# 设置挂载目录
+VOLUME /app
+
 # 设置环境变量
 ENV TZ=Asia/Shanghai
 ENV IMAGEIO_FFMPEG_EXE=/usr/bin/ffmpeg
@@ -26,6 +29,9 @@ COPY redis.conf /etc/redis/redis.conf
 RUN pip install --no-cache-dir -r requirements.txt
 # 安装 gunicorn 和 eventlet
 RUN pip install --no-cache-dir gunicorn eventlet
+
+# 暴露 api默认监听的端囗
+EXPOSE 9000
 
 # 启动应用
 CMD ["python", "app.py"]
