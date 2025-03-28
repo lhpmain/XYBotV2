@@ -1,5 +1,7 @@
 FROM python:3.11-slim
 
+COPY . /app    # 将当前目录下的文件复制到容器的 /app 目录
+
 # 设置工作目录
 WORKDIR /app
 
@@ -16,22 +18,14 @@ RUN apt-get update && apt-get install -y \
 # 复制 Redis 配置
 COPY redis.conf /etc/redis/redis.conf
 
-# 复制依赖文件
-COPY requirements.txt .
+# 复制文件
+# COPY requirements.txt /app
+# COPY app.py /app
 
 # 安装 Python 依赖
 RUN pip install --no-cache-dir -r requirements.txt
 # 安装gunicorn和eventlet
 RUN pip install --no-cache-dir gunicorn eventlet
-
-# 复制应用代码
-COPY . .
-
-# 启动脚本
-# COPY entrypoint.sh .
-# RUN chmod +x ./entrypoint.sh
-
-# CMD ["./entrypoint.sh"]
 
 CMD ["python", "app.py"]
 
