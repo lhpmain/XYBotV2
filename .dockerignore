@@ -124,3 +124,7 @@ dmypy.json
 .pytype/
 cython_debug/
 /plugins/update_qr.py
+docker-compose.yml
+docs/
+WechatAPIDocs/
+Dockerfile
