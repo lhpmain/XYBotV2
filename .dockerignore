@@ -128,3 +128,7 @@ docker-compose.yml
 docs/
 WechatAPIDocs/
 Dockerfile
+.github/
+.git/
+.dockerignore
+.gitignore
