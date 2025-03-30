@@ -44,7 +44,9 @@ COPY --from=builder /app /app
 WORKDIR /app
 
 # 定义卷
-VOLUME /app
+VOLUME /app/resource
+VOLUME /app/logs
+VOLUME /app/flask_session
 
 # 暴露端口
 EXPOSE 9000
