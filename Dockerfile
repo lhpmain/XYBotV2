@@ -47,7 +47,9 @@ WORKDIR /app
 VOLUME /app/resource
 VOLUME /app/logs
 VOLUME /app/flask_session
-VOLUME /app/database
+VOLUME /app/database/xybot.db
+VOLUME /app/database/message.db
+VOLUME /app/database/keyval.db
 
 # 暴露端口
 EXPOSE 9000
