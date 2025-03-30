@@ -1,5 +1,8 @@
 FROM python:3.11-slim
 
+# 建工作目录
+RUN mkdir -p /app
+
 # 设置工作目录
 WORKDIR /app
 
@@ -22,10 +25,10 @@ COPY requirements.txt .
 # 安装 Python 依赖
 RUN pip install --no-cache-dir -r requirements.txt
 # 安装gunicorn和eventlet
-RUN pip install --no-cache-dir gunicorn eventlet loguru
+RUN pip install --no-cache-dir gunicorn eventlet
 
 # 复制应用代码
-COPY . .
+COPY . /app/
 
 # 定义卷
 VOLUME /app/resource
