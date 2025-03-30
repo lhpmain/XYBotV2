@@ -24,8 +24,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 安装gunicorn和eventlet
 RUN pip install --no-cache-dir gunicorn eventlet
 
-# 复制
-COPY entrypoint.sh .
+# 复制应用代码
+COPY . .
 RUN chmod +x entrypoint.sh
 
 # 定义卷
