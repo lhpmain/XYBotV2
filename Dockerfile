@@ -1,4 +1,4 @@
-FROM python:3.11-slim as builder
+FROM python:3.11-slim
 
 # 创建工作目录
 RUN mkdir -p /app
@@ -7,7 +7,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # 复制 requirements.txt 文件并安装依赖
-COPY requirements.txt /app/
+COPY requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 安装 gunicorn 和 eventlet
@@ -31,17 +31,8 @@ RUN apt-get update && apt-get install -y \
 COPY redis.conf /etc/redis/redis.conf
 
 # 给 entrypoint.sh 脚本添加可执行权限
-COPY entrypoint.sh /app/
+COPY entrypoint.sh /app
 RUN chmod +x entrypoint.sh
-
-# 多阶段构建的运行部分
-FROM python:3.11-slim
-
-# 从构建阶段复制文件
-COPY --from=builder /app /app
-
-# 设置工作目录
-WORKDIR /app
 
 # 定义卷
 VOLUME /app/resource
