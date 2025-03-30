@@ -36,8 +36,8 @@ COPY . /app/
 
 # 定义卷
 VOLUME /app/resource
-# VOLUME /app/logs
-# VOLUME /app/flask_session
+VOLUME /app/logs
+VOLUME /app/flask_session
 
 # 暴露端口
 EXPOSE 9000
@@ -50,7 +50,3 @@ python app.py' > /app/start.sh \
 
 # 设置启动命令
 CMD ["/app/start.sh"]
-
-
-# 启动应用
-# ENTRYPOINT ["bash", "entrypoint.sh"]
