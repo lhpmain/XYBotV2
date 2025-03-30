@@ -9,7 +9,6 @@ ENV IMAGEIO_FFMPEG_EXE=/usr/bin/ffmpeg
 
 # 安装系统依赖
 RUN apt-get update && apt-get install -y \
-    loguru \
     ffmpeg \
     redis-server \
     && rm -rf /var/lib/apt/lists/*
@@ -23,7 +22,7 @@ COPY requirements.txt .
 # 安装 Python 依赖
 RUN pip install --no-cache-dir -r requirements.txt
 # 安装gunicorn和eventlet
-RUN pip install --no-cache-dir gunicorn eventlet
+RUN pip install --no-cache-dir gunicorn eventlet loguru
 
 # 复制应用代码
 COPY . .
@@ -37,4 +36,4 @@ VOLUME /app/flask_session
 EXPOSE 9000
 
 # 启动应用
-ENTRYPOINT ["python", "app.py"]
+ENTRYPOINT ["bash", "entrypoint.sh"]
