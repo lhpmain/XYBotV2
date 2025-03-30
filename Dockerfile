@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y \
     redis-server \
     && rm -rf /var/lib/apt/lists/*
 
-# 复制 Redis 配置
-COPY redis.conf /etc/redis/redis.conf
-
 # 复制依赖文件
 COPY requirements.txt .
 
@@ -26,7 +23,6 @@ RUN pip install --no-cache-dir gunicorn eventlet
 
 # 复制应用代码
 COPY . .
-RUN chmod +x entrypoint.sh
 
 # 定义卷
 VOLUME /app/resource
@@ -37,4 +33,4 @@ VOLUME /app/flask_session
 EXPOSE 9000
 
 # 启动应用
-ENTRYPOINT ["bash", "entrypoint.sh"]
+ENTRYPOINT ["python", "app.py"]
