@@ -24,14 +24,12 @@ RUN which redis-server
 COPY redis.conf /etc/redis/redis.conf
 
 # 复制依赖文件
-COPY requirements.txt .
+COPY requirements.txt /app/
 
 # 安装 Python 依赖
 RUN pip install --no-cache-dir -r requirements.txt
 # 安装 gunicorn 和 eventlet
 RUN pip install --no-cache-dir gunicorn eventlet
-# 确保 loguru 被安装
-RUN pip install --no-cache-dir loguru
 
 # 复制应用代码
 COPY . /app/
