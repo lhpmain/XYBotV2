@@ -44,7 +44,7 @@ COPY --from=builder /app /app
 WORKDIR /app
 
 # 定义卷
-VOLUME /app/
+VOLUME /app
 
 # 暴露端口
 EXPOSE 9000
