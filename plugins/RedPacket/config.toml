@@ -1,5 +1,5 @@
 [RedPacket]
-enable = false
+enable = true
 command-format = """⚙️红包系统：
 发红包 积分 数量
 抢红包 口令"""
