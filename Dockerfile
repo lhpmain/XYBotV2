@@ -44,12 +44,7 @@ COPY --from=builder /app /app
 WORKDIR /app
 
 # 定义卷
-VOLUME /app/resource
-VOLUME /app/logs
-VOLUME /app/flask_session
-VOLUME /app/database/xybot.db
-VOLUME /app/database/message.db
-VOLUME /app/database/keyval.db
+VOLUME /app/
 
 # 暴露端口
 EXPOSE 9000
